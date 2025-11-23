@@ -350,51 +350,56 @@ switch ($action) {
         <head>
             <meta charset="UTF-8">
             <title>Tagebuch</title>
+            <script src="https://cdn.tailwindcss.com"></script>
             <link rel="stylesheet" href="style.css">
         </head>
-        <body>
-            <h1>Tagebuch</h1>
-            <a href="index.php?action=new">Neuer Eintrag</a>
-            <table border="1" style="width:100%; margin-top: 1em;">
-                <thead>
-                    <tr>
-                        <th>Datum</th>
-                        <th>Zeit</th>
-                        <th>Tremor</th>
-                        <th>Steifheit</th>
-                        <th>Bradykinese</th>
-                        <th>Schlafqualität</th>
-                        <th>Fatigue</th>
-                        <th>Stimmung</th>
-                        <th>Schmerzen</th>
-                        <th>Befinden</th>
-                        <th>Aktionen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($entries as $entry): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($entry['entry_date']); ?></td>
-                            <td><?php echo htmlspecialchars($entry['entry_time']); ?></td>
-                            <td><?php echo $entry['tremor_present'] ? 'Ja' : 'Nein'; ?></td>
-                            <td><?php echo $entry['rigor_present'] ? 'Ja' : 'Nein'; ?></td>
-                            <td><?php echo $entry['bradykinesia_present'] ? 'Ja' : 'Nein'; ?></td>
-                            <td><?php echo htmlspecialchars($entry['sleep_quality']); ?></td>
-                            <td><?php echo htmlspecialchars($entry['fatigue_severity']); ?></td>
-                            <td><?php echo htmlspecialchars($entry['mood_general']); ?></td>
-                            <td><?php echo htmlspecialchars($entry['pain_severity']); ?></td>
-                            <td><?php echo htmlspecialchars($entry['overall_wellbeing_score']); ?></td>
-                            <td>
-                                <a href="index.php?action=edit&id=<?php echo (int)$entry['id']; ?>">Bearbeiten</a>
-                                <form action="index.php?action=delete" method="post" style="display:inline;" onsubmit="return confirm('Diesen Eintrag löschen?');">
-                                    <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
-                                    <button type="submit">Löschen</button>
-                                </form>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <body class="bg-gray-100 text-gray-800">
+            <div class="container mx-auto p-4">
+                <h1 class="text-2xl font-bold mb-4">Tagebuch</h1>
+                <a href="index.php?action=new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Neuer Eintrag</a>
+                <div class="overflow-x-auto mt-4">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <th class="py-2 px-4">Datum</th>
+                                <th class="py-2 px-4">Zeit</th>
+                                <th class="py-2 px-4">Tremor</th>
+                                <th class="py-2 px-4">Steifheit</th>
+                                <th class="py-2 px-4">Bradykinese</th>
+                                <th class="py-2 px-4">Schlafqualität</th>
+                                <th class="py-2 px-4">Fatigue</th>
+                                <th class="py-2 px-4">Stimmung</th>
+                                <th class="py-2 px-4">Schmerzen</th>
+                                <th class="py-2 px-4">Befinden</th>
+                                <th class="py-2 px-4">Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <?php foreach ($entries as $entry): ?>
+                                <tr class="border-b">
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['entry_date']); ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['entry_time']); ?></td>
+                                    <td class="py-2 px-4"><?php echo $entry['tremor_present'] ? 'Ja' : 'Nein'; ?></td>
+                                    <td class="py-2 px-4"><?php echo $entry['rigor_present'] ? 'Ja' : 'Nein'; ?></td>
+                                    <td class="py-2 px-4"><?php echo $entry['bradykinesia_present'] ? 'Ja' : 'Nein'; ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['sleep_quality']); ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['fatigue_severity']); ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['mood_general']); ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['pain_severity']); ?></td>
+                                    <td class="py-2 px-4"><?php echo htmlspecialchars($entry['overall_wellbeing_score']); ?></td>
+                                    <td class="py-2 px-4">
+                                        <a href="index.php?action=edit&id=<?php echo (int)$entry['id']; ?>" class="text-blue-500 hover:underline">Bearbeiten</a>
+                                        <form action="index.php?action=delete" method="post" style="display:inline;" onsubmit="return confirm('Diesen Eintrag löschen?');">
+                                            <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
+                                            <button type="submit" class="text-red-500 hover:underline ml-2">Löschen</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </body>
         </html>
         <?php
