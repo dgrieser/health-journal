@@ -97,3 +97,27 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.meds-table-wrapper {
+    margin-bottom: 10px;
+}
+
+.meds-table input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.meds-actions {
+    width: 120px;
+    text-align: right;
+}
+
+.secondary-button {
+    background-color: #f3f3f3;
+    color: #0056b3;
+    border: 1px solid #ccc;
+}
+
+.secondary-button:hover {
+    background-color: #e8e8e8;
+}

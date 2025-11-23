@@ -185,6 +185,15 @@ $arrayFields = [
     'pattern_recognized'
 ];
 
+function fetch_previous_meds_details(PDO $db): string {
+    $today = date('Y-m-d');
+    $stmt = $db->prepare("SELECT meds_details FROM daily_symptom_log WHERE entry_date < :today AND meds_details IS NOT NULL AND meds_details != '' ORDER BY entry_date DESC LIMIT 1");
+    $stmt->execute([':today' => $today]);
+
+    $result = $stmt->fetchColumn();
+    return $result !== false ? (string)$result : '';
+}
+
 function collect_form_data(array $allFields, array $booleanFields, array $arrayFields): array {
     $data = [];
 
@@ -206,6 +215,24 @@ function collect_form_data(array $allFields, array $booleanFields, array $arrayF
             } else {
                 $data[$field] = (int)$_POST[$field];
             }
+            continue;
+        }
+
+        if ($field === 'meds_details') {
+            $rows = isset($_POST['meds_table']) && is_array($_POST['meds_table']) ? $_POST['meds_table'] : [];
+            $normalizedRows = array_values(array_filter(array_map(static function ($row) {
+                $name = isset($row['name']) ? trim((string)$row['name']) : '';
+                $dose = isset($row['dose']) ? trim((string)$row['dose']) : '';
+                $time = isset($row['time']) ? trim((string)$row['time']) : '';
+
+                if ($name === '' && $dose === '' && $time === '') {
+                    return null;
+                }
+
+                return ['name' => $name, 'dose' => $dose, 'time' => $time];
+            }, $rows)));
+
+            $data[$field] = $normalizedRows ? json_encode($normalizedRows, JSON_UNESCAPED_UNICODE) : '';
             continue;
         }
 
@@ -233,11 +260,13 @@ function collect_form_data(array $allFields, array $booleanFields, array $arrayF
     return $data;
 }
 
+$previousMedsDetails = '';
 $action = $_GET['action'] ?? 'list';
 
 switch ($action) {
     case 'new':
         $entry = null;
+        $previousMedsDetails = fetch_previous_meds_details(get_db_connection());
         require 'new_entry_form.php';
         break;
     case 'edit':

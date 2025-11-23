@@ -10,6 +10,33 @@ function parse_multi_value(array $entryData, string $key): array {
     return array_filter(array_map('trim', explode(',', $entryData[$key])));
 }
 
+function parse_medication_rows(?string $raw): array {
+    if (empty($raw)) {
+        return [];
+    }
+
+    $decoded = json_decode($raw, true);
+    if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+        return array_values(array_filter(array_map(static function ($row) {
+            if (!is_array($row)) {
+                return null;
+            }
+
+            $name = isset($row['name']) ? trim((string)$row['name']) : '';
+            $dose = isset($row['dose']) ? trim((string)$row['dose']) : '';
+            $time = isset($row['time']) ? trim((string)$row['time']) : '';
+
+            if ($name === '' && $dose === '' && $time === '') {
+                return null;
+            }
+
+            return ['name' => $name, 'dose' => $dose, 'time' => $time];
+        }, $decoded)));
+    }
+
+    return [['name' => trim($raw), 'dose' => '', 'time' => '']];
+}
+
 $selected = [
     'tremor_regions' => parse_multi_value($entryData, 'tremor_regions'),
     'rigor_regions' => parse_multi_value($entryData, 'rigor_regions'),
@@ -39,6 +66,20 @@ $selected = [
 ];
 
 $napVoluntary = $entryData['fatigue_nap_voluntary'] ?? null;
+$previousMedsDetails = $previousMedsDetails ?? '';
+$medicationRows = parse_medication_rows($entryData['meds_details'] ?? '');
+
+if (!$isEdit && empty($medicationRows) && $previousMedsDetails !== '') {
+    $medicationRows = parse_medication_rows($previousMedsDetails);
+
+    if (!empty($medicationRows)) {
+        $entryData['meds_taken'] = $entryData['meds_taken'] ?? 1;
+    }
+}
+
+if (empty($medicationRows)) {
+    $medicationRows = [['name' => '', 'dose' => '', 'time' => '']];
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -702,9 +743,39 @@ $napVoluntary = $entryData['fatigue_nap_voluntary'] ?? null;
         <fieldset>
             <legend>19. Medikamente und Interventionen</legend>
             <label><input type="checkbox" name="meds_taken" value="1" <?php echo !empty($entryData['meds_taken']) ? 'checked' : ''; ?>> Medikamente eingenommen?</label>
-            <label for="meds_details">Medikamente (Name + Dosierung):</label>
-            <textarea id="meds_details" name="meds_details"><?php echo htmlspecialchars($entryData['meds_details'] ?? '', ENT_QUOTES); ?></textarea>
-            <label for="meds_timing">Zeitpunkt der Medikation:</label>
+            <label for="meds_details">Medikamentenplan:</label>
+            <div class="meds-table-wrapper">
+                <table class="meds-table" id="meds-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Dosis</th>
+                            <th>Uhrzeit</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="meds-table-body">
+                        <?php foreach ($medicationRows as $index => $row): ?>
+                            <tr>
+                                <td>
+                                    <input type="text" name="meds_table[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($row['name'] ?? '', ENT_QUOTES); ?>" placeholder="Medikament">
+                                </td>
+                                <td>
+                                    <input type="text" name="meds_table[<?php echo $index; ?>][dose]" value="<?php echo htmlspecialchars($row['dose'] ?? '', ENT_QUOTES); ?>" placeholder="z.B. 100 mg">
+                                </td>
+                                <td>
+                                    <input type="time" name="meds_table[<?php echo $index; ?>][time]" value="<?php echo htmlspecialchars($row['time'] ?? '', ENT_QUOTES); ?>">
+                                </td>
+                                <td class="meds-actions">
+                                    <button type="button" class="remove-meds-row">Entfernen</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <button type="button" id="add-meds-row" class="secondary-button">Zeile hinzufügen</button>
+            </div>
+            <label for="meds_timing">Zeitpunkt der Medikation (falls zusätzlicher Kontext nötig):</label>
             <input type="text" id="meds_timing" name="meds_timing" value="<?php echo htmlspecialchars($entryData['meds_timing'] ?? '', ENT_QUOTES); ?>">
             <label for="meds_effect">Auswirkung auf Symptome:</label>
             <select name="meds_effect" id="meds_effect">
@@ -755,5 +826,73 @@ $napVoluntary = $entryData['fatigue_nap_voluntary'] ?? null;
 
         <button type="submit"><?php echo $isEdit ? 'Änderungen speichern' : 'Eintrag speichern'; ?></button>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('meds-table-body');
+            const addButton = document.getElementById('add-meds-row');
+            let medsRowCounter = tableBody.querySelectorAll('tr').length;
+
+            function createInput(name, value, placeholder, type = 'text') {
+                const input = document.createElement('input');
+                input.type = type;
+                input.name = name;
+                input.value = value || '';
+                if (placeholder) {
+                    input.placeholder = placeholder;
+                }
+                return input;
+            }
+
+            function removeRow(row) {
+                row.remove();
+
+                if (!tableBody.querySelector('tr')) {
+                    addRow();
+                }
+            }
+
+            function addRow(data = {}) {
+                const rowIndex = medsRowCounter++;
+                const tr = document.createElement('tr');
+
+                const nameTd = document.createElement('td');
+                nameTd.appendChild(createInput(`meds_table[${rowIndex}][name]`, data.name, 'Medikament'));
+
+                const doseTd = document.createElement('td');
+                doseTd.appendChild(createInput(`meds_table[${rowIndex}][dose]`, data.dose, 'z.B. 100 mg'));
+
+                const timeTd = document.createElement('td');
+                timeTd.appendChild(createInput(`meds_table[${rowIndex}][time]`, data.time, '', 'time'));
+
+                const actionsTd = document.createElement('td');
+                actionsTd.className = 'meds-actions';
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'remove-meds-row';
+                removeButton.textContent = 'Entfernen';
+                removeButton.addEventListener('click', () => removeRow(tr));
+                actionsTd.appendChild(removeButton);
+
+                tr.appendChild(nameTd);
+                tr.appendChild(doseTd);
+                tr.appendChild(timeTd);
+                tr.appendChild(actionsTd);
+
+                tableBody.appendChild(tr);
+            }
+
+            addButton.addEventListener('click', () => addRow());
+
+            tableBody.querySelectorAll('.remove-meds-row').forEach((button) => {
+                button.addEventListener('click', (event) => {
+                    const row = event.target.closest('tr');
+                    if (row) {
+                        removeRow(row);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
