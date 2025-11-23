@@ -1,14 +1,20 @@
 <?php
 
 function get_db_connection() {
-    $db = new PDO('sqlite:../db/journal.db');
+    $dbDir = __DIR__ . '/../db';
+    if (!is_dir($dbDir)) {
+        mkdir($dbDir, 0777, true);
+    }
+
+    $dbPath = $dbDir . '/journal.db';
+    $db = new PDO('sqlite:' . $dbPath);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $db;
 }
 
 function initialize_database() {
     $db = get_db_connection();
-    $db->exec("
+    $db->exec(<<<'SQL'
         CREATE TABLE IF NOT EXISTS daily_symptom_log (
             -- METADATA
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -146,9 +152,9 @@ function initialize_database() {
             overall_wellbeing_score INTEGER, -- Scale 1-10
             daily_summary_notes TEXT
         )
-    ");
+    SQL);
 
-    $db->exec("
+    $db->exec(<<<'SQL'
         CREATE VIEW IF NOT EXISTS weekly_parkinson_summary AS
         SELECT
             strftime('%W', entry_date) as week_number,
@@ -160,5 +166,5 @@ function initialize_database() {
             AVG(overall_wellbeing_score) as avg_wellbeing
         FROM daily_symptom_log
         GROUP BY week_number;
-    ");
+    SQL);
 }
