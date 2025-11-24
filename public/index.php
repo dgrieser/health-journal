@@ -388,11 +388,27 @@ switch ($action) {
                                     <td class="py-2 px-4"><?php echo htmlspecialchars($entry['pain_severity']); ?></td>
                                     <td class="py-2 px-4"><?php echo htmlspecialchars($entry['overall_wellbeing_score']); ?></td>
                                     <td class="py-2 px-4">
-                                        <a href="index.php?action=edit&id=<?php echo (int)$entry['id']; ?>" class="text-blue-500 hover:underline">Bearbeiten</a>
-                                        <form action="index.php?action=delete" method="post" style="display:inline;" onsubmit="return confirm('Diesen Eintrag löschen?');">
-                                            <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
-                                            <button type="submit" class="text-red-500 hover:underline ml-2">Löschen</button>
-                                        </form>
+                                        <div class="flex items-center gap-2">
+                                            <form action="index.php" method="get">
+                                                <input type="hidden" name="action" value="edit">
+                                                <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
+                                                <button type="submit" class="flex items-center gap-1 rounded bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
+                                                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path d="M17.414 2.586a2 2 0 0 0-2.828 0l-8.5 8.5a1 1 0 0 0-.263.464l-1.268 4.43a.5.5 0 0 0 .623.623l4.43-1.268a1 1 0 0 0 .464-.263l8.5-8.5a2 2 0 0 0 0-2.828zM4.82 13.923l.806-2.812 2.006 2.006-2.812.806zm3.619-1.168-1.194-1.194 7.647-7.647 1.194 1.194-7.647 7.647z" />
+                                                    </svg>
+                                                    <span>Bearbeiten</span>
+                                                </button>
+                                            </form>
+                                            <form action="index.php?action=delete" method="post" onsubmit="return confirm('Diesen Eintrag löschen?');">
+                                                <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
+                                                <button type="submit" class="flex items-center gap-1 rounded bg-red-100 px-3 py-1 text-sm font-semibold text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-1">
+                                                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path d="M6 7a1 1 0 0 1 1 1v7a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v7a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1zm5-3h-3.5l-1-1h-3l-1 1H3v2h14V4zM5 6v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V6H5z" />
+                                                    </svg>
+                                                    <span>Löschen</span>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
