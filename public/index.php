@@ -388,24 +388,52 @@ switch ($action) {
                                     <td class="py-2 px-4"><?php echo htmlspecialchars($entry['pain_severity']); ?></td>
                                     <td class="py-2 px-4"><?php echo htmlspecialchars($entry['overall_wellbeing_score']); ?></td>
                                     <td class="py-2 px-4">
-                                        <div class="flex items-center gap-2">
+                                        <div class="flex items-center gap-1">
                                             <form action="index.php" method="get">
                                                 <input type="hidden" name="action" value="edit">
                                                 <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
-                                                <button type="submit" class="flex items-center gap-1 rounded bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
-                                                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path d="M17.414 2.586a2 2 0 0 0-2.828 0l-8.5 8.5a1 1 0 0 0-.263.464l-1.268 4.43a.5.5 0 0 0 .623.623l4.43-1.268a1 1 0 0 0 .464-.263l8.5-8.5a2 2 0 0 0 0-2.828zM4.82 13.923l.806-2.812 2.006 2.006-2.812.806zm3.619-1.168-1.194-1.194 7.647-7.647 1.194 1.194-7.647 7.647z" />
+                                                <button type="submit" aria-label="Bearbeiten" class="flex h-16 w-16 items-center justify-center rounded bg-blue-100 text-blue-700 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
+                                                    <svg class="h-12 w-12" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" fill="#000000" aria-hidden="true">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <defs>
+                                                                <filter id="a" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+                                                                    <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                                                    <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                                                                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                                                                    <feMerge>
+                                                                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                                                    </feMerge>
+                                                                </filter>
+                                                            </defs>
+                                                            <path fill-rule="evenodd" d="M36.503 19h-13.509c-1.651 0-2.994 1.341-2.994 2.994v14.012c0 1.651 1.341 2.994 2.994 2.994h14.012c1.651 0 2.994-1.341 2.994-2.994v-13.509.503l-2 3v10.006c0 .548-.447.994-.994.994h-14.012c-.548 0-.994-.447-.994-.994v-14.012c0-.548.447-.994.994-.994h10.012l2.994-2h.503zm1.398.706c.39-.39 1.02-.392 1.413.001.391.391.391 1.024.001 1.413l-8.486 8.486-2.121.707.707-2.121 8.486-8.486z" filter="url(#a)"></path>
+                                                        </g>
                                                     </svg>
-                                                    <span>Bearbeiten</span>
                                                 </button>
                                             </form>
                                             <form action="index.php?action=delete" method="post" onsubmit="return confirm('Diesen Eintrag löschen?');">
                                                 <input type="hidden" name="id" value="<?php echo (int)$entry['id']; ?>">
-                                                <button type="submit" class="flex items-center gap-1 rounded bg-red-100 px-3 py-1 text-sm font-semibold text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-1">
-                                                    <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                        <path d="M6 7a1 1 0 0 1 1 1v7a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v7a1 1 0 1 1-2 0V8a1 1 0 0 1 1-1zm5-3h-3.5l-1-1h-3l-1 1H3v2h14V4zM5 6v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V6H5z" />
+                                                <button type="submit" aria-label="Löschen" class="flex h-16 w-16 items-center justify-center rounded bg-red-100 text-red-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-1">
+                                                    <svg class="h-12 w-12" viewBox="-2.5 0 61 61" xmlns="http://www.w3.org/2000/svg" fill="#000000" aria-hidden="true">
+                                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                        <g id="SVGRepo_iconCarrier">
+                                                            <defs>
+                                                                <filter id="a" width="200%" height="200%" x="-50%" y="-50%" filterUnits="objectBoundingBox">
+                                                                    <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+                                                                    <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+                                                                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+                                                                    <feMerge>
+                                                                        <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                                                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                                                    </feMerge>
+                                                                </filter>
+                                                            </defs>
+                                                            <path fill-rule="evenodd" d="M36 26v10.997c0 1.659-1.337 3.003-3.009 3.003h-9.981c-1.662 0-3.009-1.342-3.009-3.003v-10.997h16zm-2 0v10.998c0 .554-.456 1.002-1.002 1.002h-9.995c-.554 0-1.002-.456-1.002-1.002v-10.998h12zm-9-5c0-.552.451-1 .991-1h4.018c.547 0 .991.444.991 1 0 .552-.451 1-.991 1h-4.018c-.547 0-.991-.444-.991-1zm0 6.997c0-.551.444-.997 1-.997.552 0 1 .453 1 .997v6.006c0 .551-.444.997-1 .997-.552 0-1-.453-1-.997v-6.006zm4 0c0-.551.444-.997 1-.997.552 0 1 .453 1 .997v6.006c0 .551-.444.997-1 .997-.552 0-1-.453-1-.997v-6.006zm-6-5.997h-4.008c-.536 0-.992.448-.992 1 0 .556.444 1 .992 1h18.016c.536 0 .992-.448.992-1 0-.556-.444-1-.992-1h-4.008v-1c0-1.653-1.343-3-3-3h-3.999c-1.652 0-3 1.343-3 3v1z" filter="url(#a)"></path>
+                                                        </g>
                                                     </svg>
-                                                    <span>Löschen</span>
                                                 </button>
                                             </form>
                                         </div>
