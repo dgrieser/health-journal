@@ -97,28 +97,41 @@ if (empty($medicationRows)) {
                 <input type="hidden" name="id" value="<?php echo (int)$entryData['id']; ?>">
             <?php endif; ?>
 
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2 cursor-pointer accordion-header">Metadaten</h2>
-                <div class="accordion-content">
-                    <fieldset>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="entry_date" class="block text-sm font-medium text-gray-700">Datum:</label>
-                                <input type="date" id="entry_date" name="entry_date" value="<?php echo htmlspecialchars($entryData['entry_date'] ?? date('Y-m-d'), ENT_QUOTES); ?>" required>
-                            </div>
-                            <div>
-                                <label for="entry_time" class="block text-sm font-medium text-gray-700">Uhrzeit:</label>
-                                <input type="time" id="entry_time" name="entry_time" value="<?php echo htmlspecialchars($entryData['entry_time'] ?? date('H:i'), ENT_QUOTES); ?>">
-                            </div>
-                        </div>
-                    </fieldset>
+            <div id="wizard-progress" class="bg-white p-4 rounded-lg shadow-md mb-2">
+                <div class="flex items-center justify-between text-sm font-medium mb-2">
+                    <span id="wizard-step-label">Schritt 1 von 6</span>
+                    <span id="wizard-step-name" class="text-indigo-700 font-semibold">Metadaten</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="wizard-progress-bar" class="bg-indigo-600 h-2 rounded-full" style="width: 16.7%;"></div>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2 cursor-pointer accordion-header">A. MOTORISCHE SYMPTOME</h2>
-                <div class="accordion-content hidden">
-                    <fieldset class="mt-4">
+            <div class="wizard-step" data-step-title="Metadaten">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">Metadaten</h2>
+                    <div class="space-y-4">
+                        <fieldset>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="entry_date" class="block text-sm font-medium text-gray-700">Datum:</label>
+                                    <input type="date" id="entry_date" name="entry_date" value="<?php echo htmlspecialchars($entryData['entry_date'] ?? date('Y-m-d'), ENT_QUOTES); ?>" required>
+                                </div>
+                                <div>
+                                    <label for="entry_time" class="block text-sm font-medium text-gray-700">Uhrzeit:</label>
+                                    <input type="time" id="entry_time" name="entry_time" value="<?php echo htmlspecialchars($entryData['entry_time'] ?? date('H:i'), ENT_QUOTES); ?>">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wizard-step" data-step-title="Motorische Symptome (1-4)">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">A. MOTORISCHE SYMPTOME (Teil 1)</h2>
+                    <div class="space-y-6">
+                        <fieldset class="mt-4">
             <legend>1. Tremor (Zittern)</legend>
             <label><input type="checkbox" name="tremor_present" value="1" <?php echo !empty($entryData['tremor_present']) ? 'checked' : ''; ?>> Tremor vorhanden?</label>
             <div class="checkbox-group">
@@ -244,7 +257,14 @@ if (empty($medicationRows)) {
             <label for="arm_swing_notes">Besonderheiten:</label>
             <textarea id="arm_swing_notes" name="arm_swing_notes"><?php echo htmlspecialchars($entryData['arm_swing_notes'] ?? '', ENT_QUOTES); ?></textarea>
         </fieldset>
+                    </div>
+                </div>
+            </div>
 
+            <div class="wizard-step" data-step-title="Motorische Symptome (5-9)">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">A. MOTORISCHE SYMPTOME (Teil 2)</h2>
+                    <div class="space-y-6">
         <fieldset>
             <legend>5. Feinmotorik-Probleme</legend>
             <label><input type="checkbox" name="fine_motor_issues_present" value="1" <?php echo !empty($entryData['fine_motor_issues_present']) ? 'checked' : ''; ?>> Feinmotorik-Probleme vorhanden?</label>
@@ -361,12 +381,14 @@ if (empty($medicationRows)) {
             <label for="dystonia_notes">Besonderheiten:</label>
             <textarea id="dystonia_notes" name="dystonia_notes"><?php echo htmlspecialchars($entryData['dystonia_notes'] ?? '', ENT_QUOTES); ?></textarea>
         </fieldset>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2 cursor-pointer accordion-header">B. NICHT-MOTORISCHE SYMPTOME</h2>
-                <div class="accordion-content hidden">
+            <div class="wizard-step" data-step-title="Nicht-motorische Symptome (10-13)">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">B. NICHT-MOTORISCHE SYMPTOME (Teil 1)</h2>
+                    <div class="space-y-6">
                     <fieldset>
             <legend>10. Schlafstörungen</legend>
             <label for="sleep_quality">Schlafqualität:</label>
@@ -507,7 +529,14 @@ if (empty($medicationRows)) {
                 <label><input type="checkbox" name="taste_impacts[]" value="Sonstiges" <?php echo in_array('Sonstiges', $selected['taste_impacts']) ? 'checked' : ''; ?>> Sonstiges</label>
             </div>
         </fieldset>
+                    </div>
+                </div>
+            </div>
 
+            <div class="wizard-step" data-step-title="Nicht-motorische Symptome (14-18)">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">B. NICHT-MOTORISCHE SYMPTOME (Teil 2)</h2>
+                    <div class="space-y-6">
         <fieldset>
             <legend>14. Stimmung und Emotion</legend>
             <label for="mood_general">Generelle Stimmung:</label>
@@ -756,12 +785,14 @@ if (empty($medicationRows)) {
                 <option value="Harnverhalt" <?php echo ($entryData['vegetative_bladder'] ?? '') === 'Harnverhalt' ? 'selected' : ''; ?>>Harnverhalt</option>
             </select>
         </fieldset>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-2 cursor-pointer accordion-header">C. ZUSÄTZLICHE BEOBACHTUNGEN</h2>
-                <div class="accordion-content hidden">
+            <div class="wizard-step" data-step-title="Zusätzliche Beobachtungen">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-2">C. ZUSÄTZLICHE BEOBACHTUNGEN</h2>
+                    <div class="space-y-6">
                      <fieldset>
             <legend>19. Medikamente und Interventionen</legend>
             <label><input type="checkbox" name="meds_taken" value="1" <?php echo !empty($entryData['meds_taken']) ? 'checked' : ''; ?>> Medikamente eingenommen?</label>
@@ -845,23 +876,85 @@ if (empty($medicationRows)) {
             <label for="daily_summary_notes">Notizen / Zusammenfassung:</label>
             <textarea id="daily_summary_notes" name="daily_summary_notes"><?php echo htmlspecialchars($entryData['daily_summary_notes'] ?? '', ENT_QUOTES); ?></textarea>
         </fieldset>
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"><?php echo $isEdit ? 'Änderungen speichern' : 'Eintrag speichern'; ?></button>
+            <div class="wizard-controls flex items-center justify-between mt-4">
+                <button type="button" id="wizard-prev" class="px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zurück</button>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="wizard-next" class="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Weiter</button>
+                    <button type="submit" id="wizard-submit" class="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"><?php echo $isEdit ? 'Änderungen speichern' : 'Eintrag speichern'; ?></button>
+                </div>
+            </div>
         </form>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            const steps = Array.from(document.querySelectorAll('.wizard-step'));
+            const progressLabel = document.getElementById('wizard-step-label');
+            const progressName = document.getElementById('wizard-step-name');
+            const progressBar = document.getElementById('wizard-progress-bar');
+            const nextButton = document.getElementById('wizard-next');
+            const prevButton = document.getElementById('wizard-prev');
+            const submitButton = document.getElementById('wizard-submit');
+            const totalSteps = steps.length;
+            let currentStep = 0;
 
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    content.classList.toggle('hidden');
+            function updateWizard() {
+                if (!totalSteps) {
+                    return;
+                }
+
+                steps.forEach((step, index) => {
+                    step.classList.toggle('hidden', index !== currentStep);
                 });
-            });
+
+                const title = steps[currentStep]?.dataset.stepTitle || `Schritt ${currentStep + 1}`;
+                if (progressLabel) {
+                    progressLabel.textContent = `Schritt ${currentStep + 1} von ${totalSteps}`;
+                }
+                if (progressName) {
+                    progressName.textContent = title;
+                }
+                if (progressBar) {
+                    const percent = Math.round(((currentStep + 1) / totalSteps) * 100);
+                    progressBar.style.width = `${percent}%`;
+                }
+
+                if (prevButton) {
+                    prevButton.disabled = currentStep === 0;
+                    prevButton.classList.toggle('opacity-50', currentStep === 0);
+                    prevButton.classList.toggle('cursor-not-allowed', currentStep === 0);
+                }
+
+                if (nextButton) {
+                    nextButton.classList.toggle('hidden', currentStep === totalSteps - 1);
+                }
+
+                if (submitButton) {
+                    submitButton.classList.toggle('hidden', currentStep !== totalSteps - 1);
+                }
+            }
+
+            if (totalSteps) {
+                nextButton?.addEventListener('click', () => {
+                    if (currentStep < totalSteps - 1) {
+                        currentStep += 1;
+                        updateWizard();
+                    }
+                });
+
+                prevButton?.addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        currentStep -= 1;
+                        updateWizard();
+                    }
+                });
+
+                updateWizard();
+            }
 
             const tableBody = document.getElementById('meds-table-body');
             if (tableBody) {
