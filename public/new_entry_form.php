@@ -1,7 +1,3 @@
-{
-type: uploaded file
-fileName: health-journal-main.zip/health-journal-main/public/new_entry_form.php
-fullContent:
 <?php
 $isEdit = !empty($entry);
 $entryData = $entry ?? [];
