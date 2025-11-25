@@ -1,7 +1,3 @@
-{
-type: uploaded file
-fileName: health-journal-main.zip/health-journal-main/public/style.css
-fullContent:
 /* Custom styles for the Health Journal */
 
 @layer components {
@@ -100,5 +96,4 @@ label {
 
 .helper-text {
     @apply text-xs text-gray-500 mt-1;
-}
 }
