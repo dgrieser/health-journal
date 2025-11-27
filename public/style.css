@@ -1,59 +1,99 @@
 /* Custom styles for the Health Journal */
 
-/* Accordion styles */
-.accordion-header {
-    transition: background-color 0.2s ease-in-out;
+@layer components {
+    /* Modern Form Inputs */
+    .form-input, 
+    .form-select, 
+    .form-textarea,
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    select,
+    textarea {
+        @apply mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-2.5 px-3 bg-white transition-colors duration-200 ease-in-out;
+    }
+
+    input[type="number"] {
+        @apply font-mono;
+    }
+
+    /* Range/Intensity Inputs */
+    .intensity-input {
+        @apply w-20 text-center font-bold text-indigo-600;
+    }
+
+    /* Clickable Selection Cards (Checkboxes/Radios) */
+    .selection-card {
+        @apply relative flex items-start p-3 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 cursor-pointer transition-all duration-200 ease-in-out;
+    }
+    
+    .selection-card:focus-within {
+        @apply ring-2 ring-indigo-500 border-indigo-500;
+    }
+
+    .selection-card input[type="checkbox"],
+    .selection-card input[type="radio"] {
+        @apply h-5 w-5 mt-0.5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 flex-shrink-0;
+    }
+
+    .selection-card span {
+        @apply ml-3 text-sm font-medium text-gray-700 select-none;
+    }
+
+    /* Section Cards */
+    .section-card {
+        @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-6 transition-shadow hover:shadow-md;
+    }
+
+    .section-header {
+        @apply bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center justify-between;
+    }
+
+    .section-title {
+        @apply text-lg font-semibold text-gray-800 flex items-center gap-2;
+    }
+
+    .section-body {
+        @apply p-6 space-y-6;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+    }
+
+    .btn-primary {
+        @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500;
+    }
+
+    .btn-secondary {
+        @apply bg-white text-gray-700 border-gray-300 hover:bg-gray-50 focus:ring-indigo-500;
+    }
+    
+    .btn-danger {
+        @apply bg-red-100 text-red-700 border-transparent hover:bg-red-200 focus:ring-red-500;
+    }
+
+    /* Wizard Transitions */
+    .wizard-step {
+        @apply transition-opacity duration-300 ease-in-out;
+    }
+    
+    .wizard-step.hidden {
+        display: none;
+    }
 }
 
-.accordion-header:hover {
-    background-color: #f9fafb; /* gray-50 */
+/* Base styles adjustments */
+body {
+    @apply bg-gray-50 text-gray-900 antialiased;
 }
 
-.accordion-content {
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+label {
+    @apply text-sm font-semibold text-gray-700 mb-1 block;
 }
 
-/* Form element styles */
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="number"],
-select,
-textarea {
-    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    @apply h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500;
-}
-
-.checkbox-group {
-    @apply mt-2 space-y-2;
-}
-
-.checkbox-group label {
-    @apply flex items-center;
-}
-
-.checkbox-group label span {
-    @apply ml-2 text-sm text-gray-700;
-}
-
-/* Button styles */
-.btn {
-    @apply font-bold py-2 px-4 rounded;
-}
-
-.btn-primary {
-    @apply bg-blue-500 hover:bg-blue-700 text-white;
-}
-
-.btn-secondary {
-    @apply bg-gray-500 hover:bg-gray-700 text-white;
-}
-
-.btn-danger {
-    @apply bg-red-500 hover:bg-red-700 text-white;
+.helper-text {
+    @apply text-xs text-gray-500 mt-1;
 }
