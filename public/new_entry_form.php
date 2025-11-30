@@ -395,7 +395,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 
                 <div class="section-card">
                     <div class="section-header">
-                         <h2 class="section-title">8. Haltung & 9. Dystonie</h2>
+                         <h2 class="section-title">8. Haltung & Dystonie</h2>
                     </div>
                     <div class="section-body">
                         <div class="grid grid-cols-1 gap-8">
@@ -425,7 +425,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 
                 <div class="section-card">
                     <div class="section-header">
-                        <h2 class="section-title">10. Schlaf</h2>
+                        <h2 class="section-title">9. Schlaf</h2>
                     </div>
                     <div class="section-body">
                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -449,10 +449,9 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                          </div>
                          
                          <div class="mt-6 border-t border-gray-100 pt-4">
-                             <h3 class="font-bold text-gray-800 mb-2">REM-Verhaltensstörung</h3>
                              <label class="flex items-center gap-2 cursor-pointer mb-2">
                                 <input type="checkbox" name="sleep_rem_behavior_present" value="1" <?php echo !empty($entryData['sleep_rem_behavior_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                                <span class=" text-gray-700">Auffälligkeiten im Traumschlaf?</span>
+                                <span class="font-bold text-gray-800">Auffälligkeiten im Traumschlaf? (REM-Verhaltensstörung)</span>
                             </label>
                              <?php render_checkbox_grid('sleep_rem_symptoms', ['Lebhafte/Alptraum-Träume', 'Reden im Schlaf', 'Schreien', 'Um sich schlagen', 'Bewegungen'], $selected['sleep_rem_symptoms']); ?>
                          </div>
@@ -461,7 +460,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
 
                 <div class="section-card">
                     <div class="section-header">
-                        <h2 class="section-title">11. Tagesschläfrigkeit (Fatigue)</h2>
+                        <h2 class="section-title">10. Tagesschläfrigkeit (Fatigue)</h2>
                     </div>
                     <div class="section-body">
                         <div>
@@ -502,7 +501,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 </div>
                 
                  <div class="section-card">
-                    <div class="section-header"><h2 class="section-title">12./13. Riechen & Schmecken</h2></div>
+                    <div class="section-header"><h2 class="section-title">11. Riechen & Schmecken</h2></div>
                     <div class="section-body">
                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                             <div>
@@ -532,7 +531,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                  
                  <div class="section-card">
                     <div class="section-header">
-                        <h2 class="section-title">14. Stimmung</h2>
+                        <h2 class="section-title">12. Stimmung</h2>
                     </div>
                     <div class="section-body">
                         <div>
@@ -556,7 +555,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                  </div>
 
                  <div class="section-card">
-                     <div class="section-header"><h2 class="section-title">15. Kognitive Funktionen</h2></div>
+                     <div class="section-header"><h2 class="section-title">13. Kognitive Funktionen</h2></div>
                      <div class="section-body">
                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                             <div>
@@ -587,7 +586,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
 
                  <div class="section-card">
                      <div class="section-header">
-                        <h2 class="section-title">16. Schmerzen</h2>
+                        <h2 class="section-title">14. Schmerzen</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="pain_present" value="1" <?php echo !empty($entryData['pain_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
                             <span class=" font-medium text-gray-700">Vorhanden?</span>
@@ -621,7 +620,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
             <div class="wizard-step hidden" data-step-title="Verdauung, Medis & Notizen">
                 
                 <div class="section-card">
-                    <div class="section-header"><h2 class="section-title">17./18. Verdauung & Vegetatives</h2></div>
+                    <div class="section-header"><h2 class="section-title">15. Verdauung & Vegetatives</h2></div>
                     <div class="section-body">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                             <div>
@@ -648,7 +647,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
 
                 <div class="section-card">
                     <div class="section-header">
-                        <h2 class="section-title">19. Medikamente</h2>
+                        <h2 class="section-title">16. Medikamente</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="meds_taken" value="1" <?php echo !empty($entryData['meds_taken']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
                             <span class=" font-medium text-gray-700">Eingenommen?</span>
@@ -692,7 +691,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 </div>
                 
                 <div class="section-card">
-                    <div class="section-header"><h2 class="section-title">20. Fazit</h2></div>
+                    <div class="section-header"><h2 class="section-title">17. Fazit</h2></div>
                     <div class="section-body">
                          <div>
                             <label>Erkannte Muster</label>
