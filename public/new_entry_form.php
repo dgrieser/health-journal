@@ -115,7 +115,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 <h1 class="text-3xl font-bold text-gray-900 tracking-tight"><?php echo $isEdit ? 'Eintrag bearbeiten' : 'Neuer Eintrag'; ?></h1>
                 <p class="text-gray-500 mt-1">Symptom-Tagebuch</p>
             </div>
-            <a href="index.php" class="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center gap-1">
+            <a href="index.php" class="text-indigo-600 hover:text-indigo-800 font-medium  flex items-center gap-1">
                 &larr; Zurück zur Übersicht
             </a>
         </div>
@@ -127,7 +127,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
 
             <div class="sticky top-0 z-10 bg-gray-50 pt-4 pb-4 mb-6">
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-4">
-                    <div class="flex items-center justify-between text-sm font-medium mb-3">
+                    <div class="flex items-center justify-between  font-medium mb-3">
                         <span id="wizard-step-label" class="text-gray-500">Schritt 1 von 6</span>
                         <span id="wizard-step-name" class="text-indigo-600 font-bold">Metadaten</span>
                     </div>
@@ -167,7 +167,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">1. Tremor (Zittern)</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="tremor_present" value="1" <?php echo !empty($entryData['tremor_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Vorhanden?</span>
+                            <span class=" font-medium text-gray-700">Vorhanden?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -213,7 +213,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">2. Steifheit (Rigor)</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="rigor_present" value="1" <?php echo !empty($entryData['rigor_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Vorhanden?</span>
+                            <span class=" font-medium text-gray-700">Vorhanden?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -257,7 +257,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">3. Verlangsamung (Bradykinese)</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="bradykinesia_present" value="1" <?php echo !empty($entryData['bradykinesia_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Vorhanden?</span>
+                            <span class=" font-medium text-gray-700">Vorhanden?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -294,7 +294,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">4. Armschlag</h2>
                          <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="arm_swing_asymmetry_present" value="1" <?php echo !empty($entryData['arm_swing_asymmetry_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Asymmetrisch?</span>
+                            <span class=" font-medium text-gray-700">Asymmetrisch?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -328,7 +328,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                          <h2 class="section-title">5. Feinmotorik</h2>
                          <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="fine_motor_issues_present" value="1" <?php echo !empty($entryData['fine_motor_issues_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Probleme?</span>
+                            <span class=" font-medium text-gray-700">Probleme?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -352,7 +352,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">6. Gangbild</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="gait_issues_present" value="1" <?php echo !empty($entryData['gait_issues_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Verändert?</span>
+                            <span class=" font-medium text-gray-700">Verändert?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -378,7 +378,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">7. Gleichgewicht</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="balance_issues_present" value="1" <?php echo !empty($entryData['balance_issues_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Störungen?</span>
+                            <span class=" font-medium text-gray-700">Störungen?</span>
                         </label>
                     </div>
                      <div class="section-body">
@@ -412,7 +412,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                             <div class="border-t border-gray-100 pt-4">
                                 <label class="flex items-center gap-2 cursor-pointer mb-2">
                                     <input type="checkbox" name="dystonia_present" value="1" <?php echo !empty($entryData['dystonia_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                                    <span class="text-sm font-medium text-gray-700">Dystonie/Krämpfe vorhanden?</span>
+                                    <span class=" font-medium text-gray-700">Dystonie/Krämpfe vorhanden?</span>
                                 </label>
                                 <?php render_checkbox_grid('dystonia_location', ['Hand', 'Fuß', 'Nacken', 'Rücken', 'Bein'], $selected['dystonia_location'], true, 'dystonia_location_other', $entryData['dystonia_location_other'] ?? ''); ?>
                             </div>
@@ -449,10 +449,10 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                          </div>
                          
                          <div class="mt-6 border-t border-gray-100 pt-4">
-                             <h3 class="text-md font-semibold text-indigo-700 mb-2">REM-Verhaltensstörung</h3>
+                             <h3 class="font-bold text-gray-800 mb-2">REM-Verhaltensstörung</h3>
                              <label class="flex items-center gap-2 cursor-pointer mb-2">
                                 <input type="checkbox" name="sleep_rem_behavior_present" value="1" <?php echo !empty($entryData['sleep_rem_behavior_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                                <span class="text-sm text-gray-700">Auffälligkeiten im Traumschlaf?</span>
+                                <span class=" text-gray-700">Auffälligkeiten im Traumschlaf?</span>
                             </label>
                              <?php render_checkbox_grid('sleep_rem_symptoms', ['Lebhafte/Alptraum-Träume', 'Reden im Schlaf', 'Schreien', 'Um sich schlagen', 'Bewegungen'], $selected['sleep_rem_symptoms']); ?>
                          </div>
@@ -476,17 +476,17 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         </div>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-4 bg-gray-50 p-4 rounded-lg">
-                             <div class="sm:col-span-2 font-semibold text-gray-700 mb-2">Energieniveau (1-10)</div>
+                             <div class="sm:col-span-2 font-bold text-gray-800 mb-2">Energieniveau (1-10)</div>
                              <div>
-                                 <label class="text-xs">Morgens</label>
+                                 <label class="">Morgens</label>
                                  <input type="number" name="fatigue_energy_morning" min="1" max="10" class="intensity-input w-full" value="<?php echo htmlspecialchars($entryData['fatigue_energy_morning'] ?? '', ENT_QUOTES); ?>">
                              </div>
                              <div>
-                                 <label class="text-xs">Mittags</label>
+                                 <label class="">Mittags</label>
                                  <input type="number" name="fatigue_energy_noon" min="1" max="10" class="intensity-input w-full" value="<?php echo htmlspecialchars($entryData['fatigue_energy_noon'] ?? '', ENT_QUOTES); ?>">
                              </div>
                              <div>
-                                 <label class="text-xs">Abends</label>
+                                 <label class="">Abends</label>
                                  <input type="number" name="fatigue_energy_evening" min="1" max="10" class="intensity-input w-full" value="<?php echo htmlspecialchars($entryData['fatigue_energy_evening'] ?? '', ENT_QUOTES); ?>">
                              </div>
                         </div>
@@ -590,7 +590,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">16. Schmerzen</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="pain_present" value="1" <?php echo !empty($entryData['pain_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Vorhanden?</span>
+                            <span class=" font-medium text-gray-700">Vorhanden?</span>
                         </label>
                      </div>
                      <div class="section-body">
@@ -651,7 +651,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <h2 class="section-title">19. Medikamente</h2>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" name="meds_taken" value="1" <?php echo !empty($entryData['meds_taken']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                            <span class="text-sm font-medium text-gray-700">Eingenommen?</span>
+                            <span class=" font-medium text-gray-700">Eingenommen?</span>
                         </label>
                     </div>
                     <div class="section-body">
@@ -659,18 +659,18 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                             <table class="min-w-full divide-y divide-gray-200" id="meds-table">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dosis</th>
-                                        <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uhrzeit</th>
+                                        <th class="px-4 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th class="px-4 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">Dosis</th>
+                                        <th class="px-4 py-3 text-left  font-medium text-gray-500 uppercase tracking-wider">Uhrzeit</th>
                                         <th class="px-4 py-3"></th>
                                     </tr>
                                 </thead>
                                 <tbody id="meds-table-body" class="bg-white divide-y divide-gray-200">
                                     <?php foreach ($medicationRows as $index => $row): ?>
                                         <tr>
-                                            <td class="px-4 py-3"><input type="text" name="meds_table[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($row['name'] ?? '', ENT_QUOTES); ?>" placeholder="Medikament" class="form-input text-sm"></td>
-                                            <td class="px-4 py-3"><input type="text" name="meds_table[<?php echo $index; ?>][dose]" value="<?php echo htmlspecialchars($row['dose'] ?? '', ENT_QUOTES); ?>" placeholder="z.B. 100mg" class="form-input text-sm"></td>
-                                            <td class="px-4 py-3"><input type="time" name="meds_table[<?php echo $index; ?>][time]" value="<?php echo htmlspecialchars($row['time'] ?? '', ENT_QUOTES); ?>" class="form-input text-sm"></td>
+                                            <td class="px-4 py-3"><input type="text" name="meds_table[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($row['name'] ?? '', ENT_QUOTES); ?>" placeholder="Medikament" class="form-input "></td>
+                                            <td class="px-4 py-3"><input type="text" name="meds_table[<?php echo $index; ?>][dose]" value="<?php echo htmlspecialchars($row['dose'] ?? '', ENT_QUOTES); ?>" placeholder="z.B. 100mg" class="form-input "></td>
+                                            <td class="px-4 py-3"><input type="time" name="meds_table[<?php echo $index; ?>][time]" value="<?php echo htmlspecialchars($row['time'] ?? '', ENT_QUOTES); ?>" class="form-input "></td>
                                             <td class="px-4 py-3 text-center"><button type="button" class="remove-meds-row text-red-600 hover:text-red-900 font-bold">&times;</button></td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -699,8 +699,8 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                             <?php render_checkbox_grid('pattern_recognized', ['Morgens schlimmer', 'Abends schlimmer', 'Nach Mahlzeiten', 'Nach Stress', 'Nach wenig Schlaf'], $selected['pattern_recognized']); ?>
                         </div>
                         <div class="mt-6">
-                            <label for="overall_wellbeing_score" class="text-lg font-bold text-gray-800">Gesamtbefindlichkeit heute (1-10)</label>
-                            <input type="number" id="overall_wellbeing_score" name="overall_wellbeing_score" min="1" max="10" class="mt-2 block w-full text-center text-2xl font-bold text-indigo-600 border-2 border-indigo-100 rounded-lg py-4 focus:ring-indigo-500 focus:border-indigo-500" value="<?php echo htmlspecialchars($entryData['overall_wellbeing_score'] ?? '', ENT_QUOTES); ?>">
+                            <label for="overall_wellbeing_score" class=" font-bold text-gray-800">Gesamtbefindlichkeit heute (1-10)</label>
+                            <input type="number" id="overall_wellbeing_score" name="overall_wellbeing_score" min="1" max="10" class="mt-2 block w-full text-center  font-bold text-indigo-600 border-2 border-indigo-100 rounded-lg py-4 focus:ring-indigo-500 focus:border-indigo-500" value="<?php echo htmlspecialchars($entryData['overall_wellbeing_score'] ?? '', ENT_QUOTES); ?>">
                         </div>
                         <div class="mt-6">
                              <label for="daily_summary_notes">Tagesnotizen</label>
@@ -787,10 +787,10 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 const rowIndex = medsRowCounter++;
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="px-4 py-3"><input type="text" name="meds_table[${rowIndex}][name]" placeholder="Medikament" class="form-input text-sm"></td>
-                    <td class="px-4 py-3"><input type="text" name="meds_table[${rowIndex}][dose]" placeholder="Dosis" class="form-input text-sm"></td>
-                    <td class="px-4 py-3"><input type="time" name="meds_table[${rowIndex}][time]" class="form-input text-sm"></td>
-                    <td class="px-4 py-3 text-center"><button type="button" class="remove-meds-row text-red-600 hover:text-red-900 font-bold text-xl">&times;</button></td>
+                    <td class="px-4 py-3"><input type="text" name="meds_table[${rowIndex}][name]" placeholder="Medikament" class="form-input "></td>
+                    <td class="px-4 py-3"><input type="text" name="meds_table[${rowIndex}][dose]" placeholder="Dosis" class="form-input "></td>
+                    <td class="px-4 py-3"><input type="time" name="meds_table[${rowIndex}][time]" class="form-input "></td>
+                    <td class="px-4 py-3 text-center"><button type="button" class="remove-meds-row text-red-600 hover:text-red-900 font-bold ">&times;</button></td>
                 `;
                 tableBody.appendChild(tr);
             }
