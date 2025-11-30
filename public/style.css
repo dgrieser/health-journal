@@ -222,3 +222,15 @@ label {
     color: #6b7280; /* text-gray-500 */
     margin-top: 0.25rem;
 }
+
+/* Header Selection Card */
+.selection-card-header {
+    width: 100%;
+    background-color: #eef2ff; /* indigo-50 */
+    border-color: #c7d2fe; /* indigo-200 */
+    margin-bottom: 0.75rem;
+}
+
+.selection-card-header:hover {
+    background-color: #e0e7ff; /* indigo-100 */
+}

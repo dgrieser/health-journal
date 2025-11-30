@@ -410,9 +410,9 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                             </div>
                             
                             <div class="border-t border-gray-100 pt-4">
-                                <label class="flex items-center gap-2 cursor-pointer mb-2">
-                                    <input type="checkbox" name="dystonia_present" value="1" <?php echo !empty($entryData['dystonia_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                                    <span class=" font-medium text-gray-700">Dystonie/Krämpfe vorhanden?</span>
+                                <label class="selection-card selection-card-header">
+                                    <input type="checkbox" name="dystonia_present" value="1" <?php echo !empty($entryData['dystonia_present']) ? 'checked' : ''; ?>>
+                                    <span>Dystonie/Krämpfe vorhanden?</span>
                                 </label>
                                 <?php render_checkbox_grid('dystonia_location', ['Hand', 'Fuß', 'Nacken', 'Rücken', 'Bein'], $selected['dystonia_location'], true, 'dystonia_location_other', $entryData['dystonia_location_other'] ?? ''); ?>
                             </div>
@@ -449,9 +449,9 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                          </div>
                          
                          <div class="mt-6 border-t border-gray-100 pt-4">
-                             <label class="flex items-center gap-2 cursor-pointer mb-2">
-                                <input type="checkbox" name="sleep_rem_behavior_present" value="1" <?php echo !empty($entryData['sleep_rem_behavior_present']) ? 'checked' : ''; ?> class="h-5 w-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500">
-                                <span class="font-bold text-gray-800">Auffälligkeiten im Traumschlaf? (REM-Verhaltensstörung)</span>
+                             <label class="selection-card selection-card-header">
+                                <input type="checkbox" name="sleep_rem_behavior_present" value="1" <?php echo !empty($entryData['sleep_rem_behavior_present']) ? 'checked' : ''; ?>>
+                                <span style="font-weight: 700; color: #1f2937;">Auffälligkeiten im Traumschlaf? (REM-Verhaltensstörung)</span>
                             </label>
                              <?php render_checkbox_grid('sleep_rem_symptoms', ['Lebhafte/Alptraum-Träume', 'Reden im Schlaf', 'Schreien', 'Um sich schlagen', 'Bewegungen'], $selected['sleep_rem_symptoms']); ?>
                          </div>
