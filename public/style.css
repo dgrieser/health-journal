@@ -55,7 +55,7 @@
     }
 
     .section-body {
-        @apply p-6 space-y-6;
+        @apply p-6 space-y-8;
     }
 
     /* Buttons */
