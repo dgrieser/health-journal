@@ -235,7 +235,7 @@ switch ($action) {
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <?php if ($entry['tremor_present']): ?>
-                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ja (Int: <?php echo $entry['tremor_intensity'] ?: '?'; ?>)</span>
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Ja (<?php echo $entry['tremor_intensity'] ?: '?'; ?>)</span>
                                                 <?php else: ?>
                                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Nein</span>
                                                 <?php endif; ?>

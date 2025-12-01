@@ -111,7 +111,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 <h1 class="text-3xl font-bold text-gray-900 tracking-tight"><?php echo $isEdit ? 'Eintrag bearbeiten' : 'Neuer Eintrag'; ?></h1>
                 <p class="text-gray-500 mt-1">Symptom-Tagebuch</p>
             </div>
-            <a href="index.php" class="text-indigo-600 hover:text-indigo-800 font-medium  flex items-center gap-1">
+            <a href="index.php" class="btn btn-secondary shadow-md inline-flex items-center gap-1">
                 &larr; Zurück zur Übersicht
             </a>
         </div>
@@ -125,7 +125,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-4">
                     <div class="flex items-center justify-between  font-medium mb-3">
                         <span id="wizard-step-label" class="text-gray-500">Schritt 1 von 6</span>
-                        <span id="wizard-step-name" class="text-indigo-600 font-bold">Metadaten</span>
+                        <span id="wizard-step-name" class="text-indigo-600 font-bold">Datum</span>
                     </div>
                     <div class="wizard-progress-container">
                         <div id="wizard-progress-bar" class="wizard-progress-bar" style="width: 16.7%;"></div>
@@ -133,7 +133,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                 </div>
             </div>
 
-            <div class="wizard-step" data-step-title="Metadaten">
+            <div class="wizard-step" data-step-title="Datum">
                 <div class="section-card">
                     <div class="section-header">
                         <h2 class="section-title">
@@ -193,7 +193,7 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                                     <option value="Bei Stress" <?php echo ($entryData['tremor_context'] ?? '') === 'Bei Stress' ? 'selected' : ''; ?>>Bei Stress</option>
                                     <option value="Nach Kaffee/Energiedrinks" <?php echo ($entryData['tremor_context'] ?? '') === 'Nach Kaffee/Energiedrinks' ? 'selected' : ''; ?>>Nach Koffein</option>
                                 </select>
-                                <input type="text" name="tremor_context_other" placeholder="Anderer Kontext..." value="<?php echo htmlspecialchars($entryData['tremor_context_other'] ?? '', ENT_QUOTES); ?>" class="mt-2">
+                                <input type="text" name="tremor_context_other" placeholder="Anderer Kontext..." value="<?php echo htmlspecialchars($entryData['tremor_context_other'] ?? '', ENT_QUOTES); ?>" class="mt-4">
                             </div>
                             
                             <div>

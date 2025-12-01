@@ -145,18 +145,18 @@ p {
 .text-green-600 { color: #16a34a; }
 .text-yellow-600 { color: #ca8a04; }
 
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: var(--spacing-sm); }
+.mt-1 { margin-top: 0.25rem !important; }
+.mt-2 { margin-top: var(--spacing-sm) !important; }
 .mt-3 { margin-top: 0.75rem; }
-.mt-4 { margin-top: var(--spacing-lg); }
-.mt-6 { margin-top: var(--spacing-xl); }
-.mb-2 { margin-bottom: var(--spacing-sm); }
-.mb-3 { margin-bottom: 0.75rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mb-8 { margin-bottom: 2rem; }
-.pt-4 { padding-top: 1rem; }
-.pb-4 { padding-bottom: 1rem; }
-.pb-12 { padding-bottom: 3rem; }
+.mt-4 { margin-top: var(--spacing-lg) !important; }
+.mt-6 { margin-top: var(--spacing-xl) !important; }
+.mb-2 { margin-bottom: var(--spacing-sm) !important; }
+.mb-3 { margin-bottom: 0.75rem !important; }
+.mb-6 { margin-bottom: 1.5rem !important; }
+.mb-8 { margin-bottom: 2rem !important; }
+.pt-4 { padding-top: 1rem !important; }
+.pb-4 { padding-bottom: 1rem !important; }
+.pb-12 { padding-bottom: 3rem !important; }
 
 .w-full { width: 100%; }
 .h-5 { height: 1.25rem; }
@@ -179,7 +179,7 @@ p {
 /* Grid */
 .grid {
     display: grid;
-    gap: 2rem; /* gap-8 from requirements */
+    /*gap: 2rem; */
 }
 
 .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
@@ -332,8 +332,8 @@ input[type="checkbox"] {
 .selection-card span { margin-left: 0.75rem; font-weight: 500; color: var(--text-main); }
 
 .selection-card-header {
-    background-color: #eef2ff;
-    border-color: #c7d2fe;
+    background-color: var(--background);
+    border-color: var(--border);
     width: 100%;
     margin-bottom: 0.75rem;
 }
