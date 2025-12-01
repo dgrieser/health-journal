@@ -100,12 +100,8 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $isEdit ? 'Eintrag bearbeiten' : 'Neuer Tagebucheintrag'; ?></title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 pb-12">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -131,8 +127,8 @@ function render_checkbox_grid(string $name, array $options, array $selectedValue
                         <span id="wizard-step-label" class="text-gray-500">Schritt 1 von 6</span>
                         <span id="wizard-step-name" class="text-indigo-600 font-bold">Metadaten</span>
                     </div>
-                    <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
-                        <div id="wizard-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500 ease-out" style="width: 16.7%;"></div>
+                    <div class="wizard-progress-container">
+                        <div id="wizard-progress-bar" class="wizard-progress-bar" style="width: 16.7%;"></div>
                     </div>
                 </div>
             </div>
